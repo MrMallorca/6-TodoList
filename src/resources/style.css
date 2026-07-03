@@ -116,7 +116,7 @@ main#content,
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 20px;
+    margin: 20px 0 20px 0;
 }
 
 .task-sections {
@@ -152,12 +152,11 @@ main#content,
     margin: 29px 5px 20px 0px;
     transform: scale(1.5);
 
-    /* make it fully rounded like a circle */
     width: 15px;
     height: 15px;
 
     border-radius: 9999px;
-    background-color: none; /* same as body background */
+    background-color: none; 
     border: 0.5px solid #ffffff1e;
     cursor: pointer;
 
@@ -199,6 +198,22 @@ main#content,
     font-size: 16px;
 }
 
+.notes-section textarea {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #171717;
+    color: white;
+    font-size: 16px;
+}
+.notes-section h2 {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffffff74;
+    font-size: 25px;
+}
 .task-card {
     width: 600px;
     background: #171717;
@@ -250,10 +265,6 @@ h1 {
 }
 
 
-
-section {
-    margin-top: 35px;
-}
 
 h3 {
     color: #8f8f8f;

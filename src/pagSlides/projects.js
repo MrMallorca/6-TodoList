@@ -29,9 +29,9 @@ function loadProjects() {
                     <div class="task-list">
 
                     </div>
-                    <section>
+                    <div>
                         <input type="text" id="pTask" name="addTaskInbput" placeholder="+ Add task">
-                    </section>
+                    </div>
 
                     <div class="actions">
                         <button id="add-task-btn">Add task</button>
@@ -47,10 +47,13 @@ function loadProjects() {
                     <div class="task-details">
                         <label for="ptitle"></label>
                     </div>
-                    <section>
-                        <label for="pnotes">Notes</label>
-                        <input type="text" id="pnotes" name="notes" placeholder="Add your notes here">
-                    </section>
+                    <div class="notes-section">
+                        <h2 for="pnotes">Notes</h2>
+                        <textarea rows="5" cols="33" id="pNotes" name="notes" placeholder="Add your notes here"></textarea>
+                    </div>
+                    <div class="actions">
+                        <button id="add-notes-btn">Add notes</button>
+                    </div>
                 </div>
             </div> `;  
     content.appendChild(projectTitle);        
@@ -58,26 +61,40 @@ function loadProjects() {
 
     // Save task using the constructor
     const titleInput = document.getElementById('pTask');
-    const notesInput = document.getElementById('pnotes');
-    const addBtn = document.getElementById('add-task-btn');
+    const addTaskBtn = document.getElementById('add-task-btn');
 
-    addBtn.addEventListener('click', () => {
+    addTaskBtn.addEventListener('click', () => {
         const title = (titleInput?.value || '').trim();
-        const notes = (notesInput?.value || '').trim();
 
         if (!title) return;
 
-        const task = new ProjectTask(title, notes);
+        const task = new ProjectTask(title, '');
         tasksStore.push(task);
 
         const target = document.querySelector('.section-left .task-card .task-list');
         if (target) addTask(target, task);
 
         titleInput.value = '';
-        notesInput.value = '';
 
         console.log('Saved task:', task);
         console.log('All tasks:', tasksStore);
+    });
+
+    // Save notes using the constructor
+    const notesInput = document.getElementById('pNotes');
+    const addNotesBtn = document.getElementById('add-notes-btn');
+
+    addNotesBtn.addEventListener('click', () => {
+        const notes = (notesInput?.value || '').trim();
+
+        if (!notes) return;
+        
+        addNotes(notes);
+
+        notesInput.value = '';
+        console.log('Saved notes:', notes);
+        console.log('All tasks:', tasksStore);
+
     });
 }
 
@@ -103,6 +120,11 @@ function addTask(target, task)
     });
 
     target.appendChild(taskElement);
+}
+
+function addNotes()
+{
+
 }
 
 
