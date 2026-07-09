@@ -1,0 +1,292 @@
+ul {
+    list-style: none;
+}
+a {
+	text-decoration: none;
+}
+
+/* --------------------- */
+
+@font-face {
+	font-family: "Urbanist";
+	src: url("./fonts/Urbanist-BoldItalic.ttf") format("truetype");
+	font-weight: 700;
+	font-style: italic;
+}
+
+
+body {
+    background: #1f2433;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Urbanist", Arial, sans-serif;
+    
+}
+
+ /* navbar */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+main#content,
+#content {
+    padding-top: 85px;
+}
+
+.nav {
+    background-color: #004548;
+    padding: 0 20px;
+    min-height: 75px;
+
+	margin: 0 auto;
+	max-width: 100%;
+	border-bottom: 4px solid rgba(0, 0, 0, 0.15);
+	box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+	> li {
+		color: #FFF;
+		float: left;
+		font-size: 17px;
+		> a {
+			color: #FFF;
+		}	
+	 }
+}
+
+
+.nav li {
+	display: inline-block;
+	line-height: 55px;
+	padding: 0 20px;
+	padding-top: 10px;
+}
+
+
+.nav img {
+	width: 150px;
+	height: 55px;
+	margin-right: 10px;
+}
+
+/* first section content */
+
+.hero {
+    min-height: 40vh;
+    display: flex;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-content {
+    max-width: 800px;
+	font-family: "Urbanist", Arial, sans-serif;
+}
+
+.hero h2 {
+    color: #00472d;
+    font-size: clamp(3rem, 5vw, 6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.hero button {
+    background-color: #00472d;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* project card */
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0 20px 0;
+}
+
+.task-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 50px;
+}
+
+.section-left {
+
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.section-left input[type="text"] {
+    width: 96.5%;
+    padding: 10px;
+    border:white 1px solid;
+    border-radius: 8px;
+    background-color: #171717;
+    color: white;
+    font-size: 16px;
+}
+
+.section-left input[type="checkbox"] {
+
+    margin: 12px 5px 12px 0px;
+    transform: scale(1.5);
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 9999px;
+    background-color: transparent; 
+    border: 0.5px solid #ffffff1e;
+    cursor: pointer;
+
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.section-left input[type="checkbox"]:checked {
+    background-color: white;
+    border-color:#ffffff1e;
+    text-decoration: line-through;
+
+}
+
+.notInteractable
+{
+    pointer-events: none;
+}
+
+.task-item {
+    display: flex;
+    padding: 0px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+.task-item .completed {
+    text-decoration: line-through;
+}
+
+.task-item:hover {
+    background: #313131;
+}
+
+.task-item.selected {
+    background-color: #313131;
+}
+
+.section-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+
+.notes-section textarea {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #171717;
+    color: white;
+    font-size: 16px;
+}
+.notes-section h2 {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffffff74;
+    font-size: 25px;
+}
+.task-card {
+    width: 600px;
+    background: #171717;
+    border-radius: 24px;
+    padding: 30px;
+
+    box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+
+.task-card label {
+    display: block;
+    margin: 5px;
+    color: white;
+    font-size: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: #999;
+    font-size: 14px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.actions button {
+    background: #00472d;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+
+}
+
+h1 {
+    margin-top: 30px;
+    font-size: 42px;
+    font-weight: 600;
+}
+
+
+
+h2 {
+    font-size: 30px;
+    color:white;
+}
+
+p {
+    color: #b0b0b0;
+    font-size: 20px;
+}
+
+.subtask {
+    margin-top: 15px;
+    border-top: 1px solid #444;
+    padding-top: 15px;
+    color: #8f8f8f;
+}
+
+
