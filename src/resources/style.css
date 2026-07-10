@@ -44,7 +44,7 @@ main#content,
     min-height: 75px;
 
 	margin: 0 auto;
-	max-width: 1500px;
+	max-width: 100%;
 	border-bottom: 4px solid rgba(0, 0, 0, 0.15);
 	box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
 	> li {
@@ -138,7 +138,7 @@ main#content,
 }
 
 .section-left input[type="text"] {
-    width: 100%;
+    width: 96.5%;
     padding: 10px;
     border:white 1px solid;
     border-radius: 8px;
@@ -147,21 +147,33 @@ main#content,
     font-size: 16px;
 }
 
-.section-left input[type="radio"] {
+.section-left input[type="checkbox"] {
 
-    margin: 29px 5px 20px 0px;
+    margin: 12px 5px 12px 0px;
     transform: scale(1.5);
 
     width: 15px;
     height: 15px;
 
     border-radius: 9999px;
-    background-color: none; 
+    background-color: transparent; 
     border: 0.5px solid #ffffff1e;
     cursor: pointer;
 
     -webkit-appearance: none;
     appearance: none;
+}
+
+.section-left input[type="checkbox"]:checked {
+    background-color: white;
+    border-color:#ffffff1e;
+    text-decoration: line-through;
+
+}
+
+.notInteractable
+{
+    pointer-events: none;
 }
 
 .task-item {
@@ -170,6 +182,10 @@ main#content,
     border-radius: 12px;
     cursor: pointer;
     transition: background .2s ease;
+}
+
+.task-item .completed {
+    text-decoration: line-through;
 }
 
 .task-item:hover {
@@ -188,15 +204,6 @@ main#content,
     flex-direction: column;
 }
 
-.section-right input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background-color: #171717;
-    color: white;
-    font-size: 16px;
-}
 
 .notes-section textarea {
     margin-top: 10px;
@@ -226,9 +233,8 @@ main#content,
 .task-card label {
     display: block;
     margin: 5px;
-    margin-top: 20px;
     color: white;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .card-header {
@@ -266,10 +272,9 @@ h1 {
 
 
 
-h3 {
-    color: #8f8f8f;
-    font-size: 14px;
-    letter-spacing: 1px;
+h2 {
+    font-size: 30px;
+    color:white;
 }
 
 p {

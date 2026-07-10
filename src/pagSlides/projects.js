@@ -8,6 +8,7 @@ class ProjectTask {
 
 const tasksStore = [];
 let selectedTask = null;
+let selectedTaskElement = null;
 
 function loadProjects() {
 
@@ -45,7 +46,7 @@ function loadProjects() {
                     </div>
 
                     <div class="task-details">
-                        <label for="ptitle"></label>
+                        <h2 for="ptitle"></h2>
                     </div>
                     <div class="notes-section">
                         <h2 for="pnotes">Notes</h2>
@@ -63,7 +64,7 @@ function loadProjects() {
     const titleInput = document.getElementById('pTask');
     const addTaskBtn = document.getElementById('add-task-btn');
 
-    addTaskBtn.addEventListener('click', () => {
+    addTaskBtn.addEventListener('click', () => {    
         const title = (titleInput?.value || '').trim();
 
         if (!title) return;
@@ -87,42 +88,64 @@ function loadProjects() {
     addNotesBtn.addEventListener('click', () => {
         const notes = (notesInput?.value || '').trim();
 
-        if (!notes) return;
-        
-        addNotes(notes);
+        if (!notes || !selectedTask) return;
 
-        notesInput.value = '';
+        selectedTask.notes = notes;
         console.log('Saved notes:', notes);
         console.log('All tasks:', tasksStore);
 
     });
 }
 
-function addTask(target, task)
+function addTask(taskTarget, task)
 {
     const taskElement = document.createElement('div');
     taskElement.classList.add('task-item');
     taskElement.innerHTML = `
-        <input type="radio" name="taskCheck" value="task">
+        <input type="checkbox" id="taskCheck">
         <label> ${task.title}</label>
     `;
 
     taskElement.addEventListener("click", () => {
-    if (selectedTask) {
-    selectedTask.classList.remove("selected");
+    if (selectedTaskElement) {
+    selectedTaskElement.classList.remove("selected");
     }
 
-    taskElement.classList.add("selected");
-    selectedTask = taskElement;
+    selectedTask = task;
+    selectedTaskElement = taskElement;
 
-    const target = document.querySelector('.task-details');
-    target.querySelector('label').textContent = task.title;
+    selectedTaskElement.classList.add("selected");
+
+    const targetTitle = document.querySelector('.task-details');
+    targetTitle.querySelector('h2').textContent = task.title;
+
+    document.getElementById('pNotes').value = task.notes;
+
     });
 
-    target.appendChild(taskElement);
+    const sectionRight = document.querySelector('.section-right');
+    const inputCheck = taskElement.querySelector('input');
+    const label = taskElement.querySelector('label');
+    inputCheck.addEventListener('change', () =>
+    {
+        if(inputCheck.checked)
+        {
+            sectionRight.classList.add('notInteractable');
+            label.classList.add('completed');
+        }
+        else
+        {
+            sectionRight.classList.remove('notInteractable');
+            label.classList.remove('completed');
+        }
+
+    });
+
+
+    taskTarget.appendChild(taskElement);
 }
 
-function addNotes()
+function addNotes(target)
 {
 
 }
