@@ -10,6 +10,7 @@ const tasksStore = [];
 let selectedTask = null;
 let selectedTaskElement = null;
 
+
 function loadProjects() {
 
     const content = document.getElementById('content');
@@ -59,12 +60,15 @@ function loadProjects() {
             </div> `;  
     content.appendChild(projectTitle);        
     content.appendChild(projectCard);
+    bindEvents();
+}
 
+
+function createTask()
+{
     // Save task using the constructor
-    const titleInput = document.getElementById('pTask');
-    const addTaskBtn = document.getElementById('add-task-btn');
-
-    addTaskBtn.addEventListener('click', () => {    
+        const titleInput = document.getElementById('pTask');
+   
         const title = (titleInput?.value || '').trim();
 
         if (!title) return;
@@ -72,20 +76,30 @@ function loadProjects() {
         const task = new ProjectTask(title, '');
         tasksStore.push(task);
 
-        const target = document.querySelector('.section-left .task-card .task-list');
-        if (target) addTask(target, task);
+        renderTask();
 
         titleInput.value = '';
 
         console.log('Saved task:', task);
         console.log('All tasks:', tasksStore);
-    });
+    
+}
 
+function renderTask()
+{
+    const taskListContainer = document.querySelector('.task-list');
+    taskListContainer.innerHTML = ''; 
+    for(const task of tasksStore)
+    {
+        addTaskDOM(document.querySelector('.section-left .task-card .task-list'), task);
+    }
+}
+
+function updateTaskNotes()
+{
     // Save notes using the constructor
-    const notesInput = document.getElementById('pNotes');
-    const addNotesBtn = document.getElementById('add-notes-btn');
+        const notesInput = document.getElementById('pNotes');
 
-    addNotesBtn.addEventListener('click', () => {
         const notes = (notesInput?.value || '').trim();
 
         if (!notes || !selectedTask) return;
@@ -93,11 +107,10 @@ function loadProjects() {
         selectedTask.notes = notes;
         console.log('Saved notes:', notes);
         console.log('All tasks:', tasksStore);
-
-    });
 }
 
-function addTask(taskTarget, task)
+
+function addTaskDOM(taskTarget, task)
 {
     const taskElement = document.createElement('div');
     taskElement.classList.add('task-item');
@@ -140,18 +153,23 @@ function addTask(taskTarget, task)
         }
 
     });
-
-
     taskTarget.appendChild(taskElement);
 }
 
-function addNotes(target)
+
+function bindEvents()
 {
+    const addTaskBtn = document.getElementById('add-task-btn');
 
+    addTaskBtn.addEventListener('click', () => { 
+        createTask();
+    });
+
+    const addNotesBtn = document.getElementById('add-notes-btn');
+        
+    addNotesBtn.addEventListener('click', () => {
+        updateTaskNotes();
+    });
 }
-
-
-
-
 
 
