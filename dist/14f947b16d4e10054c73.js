@@ -1,9 +1,8 @@
 
 class ProjectTask {
-    constructor(title, notes,completed = false) {
+    constructor(title, notes) {
         this.title = title;
         this.notes = notes;
-        this.completed = completed;
     }
 }
 
@@ -152,20 +151,9 @@ function addTaskDOM(taskTarget, task)
     const sectionRight = document.querySelector('.section-right');
     const inputCheck = taskElement.querySelector('input');
     const label = taskElement.querySelector('label');
-
-    inputCheck.checked = task.completed;
-
-    if (task.completed) {
-        label.classList.add('completed');
-        sectionRight.classList.add('notInteractable');
-    }
-
     inputCheck.addEventListener('change', () =>
     {
-        task.completed = inputCheck.checked;
-        saveLocalStorage();
-
-        if (task.completed)
+        if(inputCheck.checked)
         {
             sectionRight.classList.add('notInteractable');
             label.classList.add('completed');
@@ -175,6 +163,7 @@ function addTaskDOM(taskTarget, task)
             sectionRight.classList.remove('notInteractable');
             label.classList.remove('completed');
         }
+
     });
     taskTarget.appendChild(taskElement);
 }
@@ -188,8 +177,7 @@ function loadLocalStorage()
 {
     const storedTasks = localStorage.getItem('tasksStore');
     if (storedTasks) {
-        const parsedTasks = JSON.parse(storedTasks);
-        tasksStore = parsedTasks.map(task => new ProjectTask(task.title, task.notes, task.completed ?? false));
+        tasksStore = JSON.parse(storedTasks);
     }
 }
 
